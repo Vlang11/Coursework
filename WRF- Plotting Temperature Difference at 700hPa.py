@@ -89,7 +89,7 @@ for date in dates:
    gridlines.yformatter = LATITUDE_FORMATTER
        
    plt.title("Shaded: 08/25/2021 0000 UTC Control minus 08/25/2021 0000 UTC Pertubation Temperature at 700hPa", loc="left")
-   plt.savefig('T_Diff_700mb_' + addzero(time.month) + '-' + addzero(time.day) + '-' + addzero(time.hour) + '.png')
+   plt.savefig('T_Diff_700mb_' + '2021-08' + date + ':00:00' + '.png')
 
 
 # In[ ]:
