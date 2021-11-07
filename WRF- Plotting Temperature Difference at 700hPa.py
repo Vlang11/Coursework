@@ -2,11 +2,8 @@
 # coding: utf-8
 
 # <h2>Plotting Simulation Differences</h2>
-# 
 # This example demonstrates how to use wrf-python to plot the differences between two output over multiple times.
-# 
 # More information on how to use wrf-python is available at https://wrf-python.readthedocs.io/en/main/basic_usage.html.
-# 
 # 
 # We start by importing the needed modules. These are drawn from five packages - netCDF4, matplotlib, numpy, cartopy, and wrf (short for wrf-python).
 
@@ -43,8 +40,8 @@ def addzero(value):
 for date in dates:
    for date2 in dates2:
        # Open the datasets
-       ncfile = Dataset("/home/valang/Working/WRF_Assignment4/WRF/test/em_real/control/wrfout_d01_2021-08-"+ date + ":00:00")
-       ncfile2 = Dataset("/home/valang/Working/WRF_Assignment4/WRF/test/em_real/control//perturbed/wrfout_d01_2021-08-" + date2 + ":00:00")
+       ncfile = Dataset("filepath/control/wrfout_d01_2021-08-"+ date + ":00:00")
+       ncfile2 = Dataset("filepath/perturbed/wrfout_d01_2021-08-" + date2 + ":00:00")
    
    cont_temp = getvar(ncfile1, "tc") #Get temperature data from both cont and pert wrf file
    pert_temp = getvar(ncfile2, "tc")
@@ -90,16 +87,6 @@ for date in dates:
        
    plt.title("Shaded: 08/25/2021 0000 UTC Control minus 08/25/2021 0000 UTC Pertubation Temperature at 700hPa", loc="left")
    plt.savefig('T_Diff_700mb_' + '2021-08' + date + ':00:00' + '.png')
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
 
 
 
