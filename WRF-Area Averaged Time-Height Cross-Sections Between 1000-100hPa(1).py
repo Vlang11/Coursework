@@ -3,10 +3,11 @@
 
 # <h2>Time-Height Area-Averaged Cross-Sections</h2>
 # 
-# This example demonstrates how to take 3-D WRF-ARW output from multiple times (in this case, using data from separate files), compute the area average of a field over a specified lat/lon range at each time, and create a time-height cross-section from the resulting data.
-# 
-# The example below plots the area-averaged temperature difference, potential temperature tendency, and water vapor mixing ratio (between 1000-100 hPa) over a small domain centered off of Florida peninsula from nine times (every 3 hr from 0000 UTC 25 August 2021 to 1200 UTC 26 August 2021), using data obtained from a WRF simulation with cu parameterization perturbed. 
-# 
+# This example demonstrates how to take 3-D WRF-ARW output from multiple times (in this case, using data from separate files), find difference between a variable,
+# compute the area average of a field over a specified lat/lon range at each time, and create a time-height cross-section from the resulting data.
+# The example below plots the area-averaged temperature difference, potential temperature tendency, and water vapor mixing ratio (between 1000-100 hPa) over a 
+# small domain centered off of Florida peninsula from thirteen times (every 3 hr from 0000 UTC 25 August 2021 to 1200 UTC 26 August 2021), using data obtained 
+# from a WRF simulation with cu parameterization perturbed (cu_. 
 # More information on how to use wrf-python is available at https://wrf-python.readthedocs.io/en/main/basic_usage.html.
 # 
 # <hr>
