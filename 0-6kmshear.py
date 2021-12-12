@@ -3,18 +3,11 @@ from netCDF4 import Dataset
 from wrf import getvar, interplevel, vinterp
 import numpy as np
 import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
-import cartopy.feature as cfeature
-import pandas as pd
 import matplotlib as mpl
 from metpy.plots.ctables import registry
 mpl.use("Agg")
-
-from netCDF4 import Dataset
-import matplotlib.pyplot as plt
 from matplotlib.cm import get_cmap
 import matplotlib.ticker as mticker
-import numpy as np
 import cartopy.crs as crs
 import cartopy.feature as cfeature
 from cartopy.feature import NaturalEarthFeature
