@@ -66,9 +66,10 @@ for date in dates:
    pert_shearu = pert_u6km - pert_u10
    pert_shearv = pert_v6km - pert_v10 
    
-   cont_shear = ((cont_shearu **2) + (cont_shearv **2))**0.5
+   cont_shear = ((cont_shearu **2) + (cont_shearv **2))**0.5 #calc shear
    pert_shear = ((pert_shearu **2) + (pert_shearv **2))**0.5
    
+   # Plot control simulation shear
    # Create a figure instanc and set up map projection, boundaries etc.
    fig = plt.figure(figsize=(12,9), dpi=200.) 
    ax = plt.axes(projection=cart_proj) 
@@ -89,7 +90,6 @@ for date in dates:
    
    ax.set_extent([-98.,-89.,45.,39.],crs=crs.PlateCarree())
 
-
    gridlines = ax.gridlines(color="grey", linestyle="dotted", draw_labels=True)
    gridlines.xlabels_top = False
    gridlines.ylabels_right = False
@@ -102,7 +102,8 @@ for date in dates:
        
    plt.title("2021-07-" + date +":00:00 UTC Control Simulation 0-6km Shear", loc="left")
    plt.savefig('control_shear_2021-08-' + date + ':00:00' + '.png')
-   
+      
+   # Plot Perturbation simulation shear
    # Create a figure instanc and set up map projection, boundaries etc.
    fig = plt.figure(figsize=(12,9), dpi=200.)
    ax = plt.axes(projection=cart_proj) 
@@ -124,8 +125,6 @@ for date in dates:
    cb = plt.colorbar()
    cb.set_label("0-6km Wind Shear (m/s)")
 
-   
-
    ax.set_extent([-98.,-89.,45.,39.],crs=crs.PlateCarree())
    
    gridlines = ax.gridlines(color="grey", linestyle="dotted", draw_labels=True)
@@ -140,7 +139,40 @@ for date in dates:
        
    plt.title("2021-07-" + date +":00:00 UTC Pertubation Simulation 0-6km Shear", loc="left")
    plt.savefig('pert_shear_2021-08-' + date + ':00:00' + '.png')
-
    
+  # Plot perturbation minus control simulation shear (difference)
+   shear = pert_shear - cont_shear 
+   # Create a figure instanc and set up map projection, boundaries etc.
+   fig = plt.figure(figsize=(12,9), dpi=200.) 
+   ax = plt.axes(projection=cart_proj) 
+   #add coastlines to the plot (resolution, linewidth)
+   ax.coastlines('50m', linewidth = .8)
+        
+   #add the states
+   ax.add_feature(cfeature.STATES.with_scale('50m'),edgecolor = 'grey', linewidth = 0.6)
+      
+   # Set the map bounds
+   ax.set_xlim(cartopy_xlim(cont_pres))
+   ax.set_ylim(cartopy_ylim(cont_pres))
+
+   plt.contourf(to_np(lons), to_np(lats), to_np(cont_shear), np.arange(-30.,40,2),
+            transform=crs.PlateCarree(), cmap=colormap, extend = 'both')
+   cb = plt.colorbar()
+   cb.set_label("0-6km Wind Shear (m/s)")
+   
+   ax.set_extent([-98.,-89.,45.,39.],crs=crs.PlateCarree())
+
+   gridlines = ax.gridlines(color="grey", linestyle="dotted", draw_labels=True)
+   gridlines.xlabels_top = False
+   gridlines.ylabels_right = False
+   gridlines.xlocator = mticker.FixedLocator(np.arange(-98.,-89.,2.))
+   gridlines.ylocator = mticker.FixedLocator(np.arange(39.,45.,2.))
+   gridlines.xlabel_style = {'size':8, 'color':'black'}
+   gridlines.ylabel_style = {'size':12, 'color':'black'}
+   gridlines.xformatter = LONGITUDE_FORMATTER
+   gridlines.yformatter = LATITUDE_FORMATTER
+       
+   plt.title("2021-07-" + date +":00:00 UTC Pertubation Minus Control Simulation 0-6km Shear", loc="left")
+   plt.savefig('diff_shear_2021-08-' + date + ':00:00' + '.png')
 
    
